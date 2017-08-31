@@ -40,13 +40,15 @@ define([
         type: this.options.type,
         cartodb_logo: this.options.cartodb_logo,
         user_name: this.options.user_name,
-        sublayers: [{
-          sql: this.getQuery(),
-          cartocss: this.options.cartocss,
-          interactivity: this.options.interactivity,
-          raster: this.options.raster,
-          raster_band: this.options.raster_band
-        }]
+        sublayers: typeof this.options.sublayers !== "undefined"
+          ? this.options.sublayers
+          : [{
+              sql: this.getQuery(),
+              cartocss: this.options.cartocss,
+              interactivity: this.options.interactivity,
+              raster: this.options.raster,
+              raster_band: this.options.raster_band
+            }]
       };
 
       cartodb.createLayer(this.map, cartodbOptions)
