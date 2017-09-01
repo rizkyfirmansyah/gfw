@@ -53,6 +53,7 @@ define([
   'map/views/layers/ProtectedAreasCDBLayer',
   'map/views/layers/BiodiversityHotspotsLayer',
   'map/views/layers/ResourceRightsLayer',
+  'map/views/layers/LandmarkLayer',
   'map/views/layers/CmrResourceRightsLayer',
   'map/views/layers/LbrResourceRightsLayer',
   'map/views/layers/GnqResourceRightsLayer',
@@ -238,6 +239,7 @@ define([
   ProtectedAreasCDBLayer,
   BiodiversityHotspotsLayer,
   ResourceRightsLayer,
+  LandmarkLayer,
   CmrResourceRightsLayer,
   LbrResourceRightsLayer,
   GnqResourceRightsLayer,
@@ -533,6 +535,9 @@ define([
     },
     resource_rights: {
       view: ResourceRightsLayer
+    },
+    landmark:{
+      view: LandmarkLayer
     },
     cmr_resource_rights: {
       view: CmrResourceRightsLayer

@@ -74,6 +74,7 @@ define([
       "bol_user_fire_frequency",
       // PEOPLE
       "resource_rights",
+      "landmark",
       "cmr_resource_rights",
       "lbr_resource_rights",
       "gnq_resource_rights",

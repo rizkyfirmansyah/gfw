@@ -1,0 +1,15 @@
+#landmark_poly{
+
+   line-width: 0.5;
+   line-opacity: 1;
+   polygon-fill: #e0b714;
+   line-color: #1F78B4;
+    }
+
+#landmark_point{
+line-width: 0.5;
+line-opacity: 1;
+marker-fill: #FF0000;
+line-color: #1F78B4;
+
+}
