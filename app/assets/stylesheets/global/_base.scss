@@ -28,9 +28,12 @@ body {
     background-color: #fff;
 
     .layout-content {
-      margin-top: 40px;
+      margin-top: 45px;
+      height: calc(100% - 45px);
 
       @media (min-width:$br-mobile){
+        margin-top: 36px;
+        height: calc(100% - 36px);
         top: 0;
       }
     }

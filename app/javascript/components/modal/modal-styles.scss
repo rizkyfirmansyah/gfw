@@ -6,10 +6,22 @@ $close-position: 25px;
   overflow: hidden;
 }
 
-.c-modal-close {
+.modal-close {
   position: absolute;
   top: $close-position;
   right: $close-position;
   border: none;
   outline: none;
+  cursor: pointer;
+  z-index: 10;
+
+  svg {
+    width: rem(15px);
+    height: rem(15px);
+  }
+}
+
+html,
+body {
+  overflow-x: visible !important;
 }

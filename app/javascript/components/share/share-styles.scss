@@ -1,61 +1,99 @@
 @import '~styles/settings.scss';
-$input-button-width: rem(78px);
+$input-button-width: rem(100px);
 
 .c-share {
-  padding: rem(13px) rem(20px);
+  padding: rem(20px) rem(20px);
 
-  &__title {
-    padding: 0 0 rem(4px);
+  @media screen and (min-width: $screen-m) {
+    width: rem(430px);
+  }
+
+  .title {
+    padding: rem(5px) 0;
     font-size: 21px;
     font-weight: 300;
     text-align: center;
   }
 
-  &__subtitle {
+  .subtitle {
     font-size: 13px;
     text-align: center;
+    border-bottom: solid 1px $border;
+    padding-bottom: rem(15px);
+    margin-bottom: rem(20px);
+    opacity: 0.5;
   }
 
-  &__input-container {
-    height: rem(39px);
-    margin-top: rem(12px);
-
-    > * {
-      display: inline-block;
-      height: 100%;
+  .actions {
+    @media screen and (min-width: $screen-m) {
+      padding: 0 rem(40px);
     }
   }
 
-  &__input {
-    width: calc(100% - #{$input-button-width});
-    padding: 0 rem(10px);
-    border: 1px solid $border;
-    border-right: 0;
-    font-size: 13px;
+  .info {
     text-align: center;
+    font-size: rem(13px);
+    width: 100%;
+    margin-bottom: rem(10px);
   }
 
-  &__input-button {
-    width: $input-button-width;
-    border: 1px solid $green-gfw;
-    border-radius: 0;
-    font-size: 14px;
-    color: $slate;
-    background-color: $white;
-    outline: none;
-
-    &:hover {
-      background-color: darken($white, 10%);
-    }
-  }
-
-  &__buttons-container {
+  .input-container {
+    width: 100%;
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    margin-top: rem(10px);
+    align-items: center;
+
+    .input,
+    .input-button {
+      height: rem(40px);
+    }
+
+    .input {
+      width: calc(100% - #{$input-button-width});
+      padding: 0 rem(10px);
+      border: 1px solid $border;
+      border-right: 0;
+      font-size: rem(13px);
+      position: relative;
+      display: inline-block;
+
+      > input {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        padding: 0;
+      }
+    }
+
+    .input-button {
+      border-radius: 0;
+      width: $input-button-width;
+      display: inline-block;
+    }
+
+    .input-loader {
+      justify-content: flex-start;
+
+      .spinner {
+        width: rem(20px);
+        height: rem(20px);
+        border-width: 2px;
+        margin-left: rem(10px);
+      }
+    }
   }
 
-  &__button {
+  .buttons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: rem(15px);
+  }
+
+  .share-button {
+    margin: 0 rem(8px);
+  }
+
+  .button {
     width: rem(125px);
     height: rem(36px);
     font-size: 14px;
@@ -73,18 +111,20 @@ $input-button-width: rem(78px);
     }
   }
 
-  &__social-container {
+  .social-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: rem(50px);
+    justify-content: center;
+    margin-top: rem(25px);
   }
 
-  &__social-button {
+  .social-button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: rem(44px);
     height: rem(44px);
+    margin: 0 rem(8px);
+    border-radius: 0;
 
     .c-icon {
       width: rem(20px);
@@ -116,9 +156,4 @@ $input-button-width: rem(78px);
       }
     }
   }
-}
-
-.c-share-close {
-  right: rem(13px);
-  top: rem(13px);
 }

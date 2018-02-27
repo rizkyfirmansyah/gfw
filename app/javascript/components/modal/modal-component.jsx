@@ -28,7 +28,7 @@ class CustomModal extends PureComponent {
       >
         <button
           onClick={onRequestClose}
-          className={`c-modal-close ${closeClass}`}
+          className={`modal-close ${closeClass}`}
         >
           <Icon icon={closeIcon} />
         </button>
@@ -51,23 +51,23 @@ CustomModal.defaultProps = {
   contentLabel: 'Modal content',
   customStyles: {
     overlay: {
-      zIndex: 20,
+      zIndex: 10000,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       boxShadow: '0 5px 15px 0 rgba(71, 44, 184, 0.1)',
-      backgroundColor: 'rgba(17, 55, 80, 0.4)'
+      backgroundColor: 'rgba(17, 55, 80, 0.4)',
+      overflow: 'auto',
+      padding: window.innerWidth > 600 ? '40px 0' : '0'
     },
     content: {
       position: 'relative',
       top: 'auto',
+      margin: 'auto',
       left: 'auto',
       right: 'auto',
       bottom: 'auto',
-      width: '770px',
       padding: '0',
-      maxHeight: '640px',
-      height: 'calc(100vh - 100px)',
       border: 'none',
       borderRadius: 0
     }

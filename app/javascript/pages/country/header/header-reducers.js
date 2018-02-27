@@ -1,26 +1,33 @@
 export const initialState = {
-  selectedCountry: '',
-  selectedRegion: '',
-  countrySelectData: [],
-  regionSelectData: [],
-  totalCoverHeader: 0,
-  totalForestHeader: 0,
-  percentageForestHeader: 0,
-  totalCoverLoss: 0
+  loading: false,
+  error: false,
+  data: {
+    totalArea: 0,
+    extent: 0,
+    totalLoss: {},
+    plantationsLoss: {}
+  },
+  settings: {
+    indicator: 'gadm28',
+    threshold: 30
+  }
 };
 
-const setHeaderValues = (state, { payload }) => ({
+const setHeaderLoading = (state, { payload }) => ({
   ...state,
-  selectedCountry: payload.selectedCountry,
-  selectedRegion: payload.selectedRegion,
-  countrySelectData: payload.countrySelectData,
-  regionSelectData: payload.regionSelectData,
-  totalCoverHeader: payload.totalCoverHeader,
-  totalForestHeader: payload.totalForestHeader,
-  percentageForestHeader: payload.percentageForestHeader,
-  totalCoverLoss: payload.totalCoverLoss
+  ...payload
+});
+
+const setHeaderData = (state, { payload }) => ({
+  ...state,
+  data: {
+    ...state.data,
+    ...payload
+  },
+  loading: false
 });
 
 export default {
-  setHeaderValues
+  setHeaderLoading,
+  setHeaderData
 };

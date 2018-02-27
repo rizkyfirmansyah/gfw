@@ -1,45 +1,48 @@
-import { createElement } from 'react';
+import { createElement, PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import { getShortenUrl } from 'services/bitly';
 
 import actions from './share-actions';
 import reducers, { initialState } from './share-reducers';
-
 import ShareComponent from './share-component';
 
-const mapStateToProps = state => ({
-  isOpen: state.share.isOpen,
-  haveEmbed: state.share.haveEmbed,
-  selectedType: state.share.selectedType,
-  url: state.share.url,
-  embedSettings: state.share.embedSettings,
-  data: state.share.data
+const mapStateToProps = ({ share, location }) => ({
+  open: share.open,
+  selected: share.selected,
+  copied: share.copied,
+  data: share.data,
+  loading: share.loading,
+  location
 });
 
-const ShareContainer = props => {
-  const setShareableUrl = newProps => {
-    const { data, selectedType, embedSettings, setShareUrl } = newProps;
+class ShareContainer extends PureComponent {
+  handleCopyToClipboard = input => {
+    const { setShareCopied, data } = this.props;
+    input.select();
 
-    if (selectedType === 'link') {
-      getShortenUrl(data.url).then(response => {
-        setShareUrl(
-          response.data.status_code === 200 ? response.data.data.url : data.url
-        );
-      });
-    } else if (selectedType === 'embed') {
-      setShareUrl(
-        `<iframe width="${embedSettings.width}" height="${
-          embedSettings.height
-        }" frameborder="0" src="${data.url}"></iframe>`
-      );
+    try {
+      document.execCommand('copy');
+      setShareCopied(data);
+    } catch (err) {
+      alert('This browser does not support clipboard access'); // eslint-disable-line
     }
   };
 
-  return createElement(ShareComponent, {
-    ...props,
-    setShareableUrl
-  });
+  handleFocus = event => {
+    event.target.select();
+  };
+
+  render() {
+    return createElement(ShareComponent, {
+      ...this.props,
+      handleCopyToClipboard: this.handleCopyToClipboard,
+      handleFocus: this.handleFocus
+    });
+  }
+}
+
+ShareContainer.propTypes = {
+  setShareCopied: PropTypes.func.isRequired
 };
 
 export { actions, reducers, initialState };

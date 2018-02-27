@@ -1,32 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Button from 'components/button';
 
-const Footer = props => (
-  <div className="c-footer">
+import './footer-styles.scss';
+
+const Footer = () => (
+  <div id="c-footer" className="c-footer">
     <div className="row">
-      <div className="small-12 medium-6 large-3 columns c-footer__alert">
-        <span>Alerts and Data Bulletin</span>
-        <a href="#" className="c-regular-button -green">
+      <div className="small-12 medium-6 large-3 columns">
+        <div className="alert">
+          <span>Alerts and Data Bulletin</span>
+          <Button className="action" disabled>
             SUSCRIBE
-        </a>
+          </Button>
+        </div>
       </div>
-      <div className="small-12 medium-6 large-3 columns c-footer__alert">
-        <span>Alerts and Data Bulletin</span>
-        <a href="#" className="c-regular-button -green">
+      <div className="small-12 medium-6 large-3 columns">
+        <div className="alert">
+          <span>Alerts and Data Bulletin</span>
+          <Button className="action" disabled>
             BROWSE
-        </a>
+          </Button>
+        </div>
       </div>
-      <div className="small-12 medium-6 large-3 columns c-footer__alert">
-        <span>Alerts and Data Bulletin</span>
-        <a href="#" className="c-regular-button -green">
+      <div className="small-12 medium-6 large-3 columns">
+        <div className="alert">
+          <span>Alerts and Data Bulletin</span>
+          <Button className="action" disabled>
             DOWNLOAD
-        </a>
+          </Button>
+        </div>
       </div>
-      <div className="small-12 medium-6 large-3 columns c-footer__alert">
-        <span>Alerts and Data Bulletin</span>
-        <a href="#" className="c-regular-button -green">
+      <div className="small-12 medium-6 large-3 columns">
+        <div className="alert">
+          <span>Alerts and Data Bulletin</span>
+          <Button className="action" disabled>
             ANALIZE
-        </a>
+          </Button>
+        </div>
       </div>
     </div>
   </div>

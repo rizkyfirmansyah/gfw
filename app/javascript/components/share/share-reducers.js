@@ -1,39 +1,64 @@
 export const initialState = {
-  isOpen: false,
-  haveEmbed: false,
-  selectedType: 'link',
-  url: '',
-  embedSettings: {
-    width: 600,
-    height: 600
-  },
-  data: {}
+  loading: false,
+  open: false,
+  selected: 'link',
+  copied: false,
+  data: {
+    title: '',
+    subtitle: '',
+    shareUrl: '',
+    embedUrl: '',
+    embedSettings: { width: 0, height: 0 },
+    socialText: ''
+  }
 };
 
-const setShareModal = (state, { payload }) => ({
+const setShareData = (state, { payload }) => ({
   ...state,
-  isOpen: payload.isOpen,
-  haveEmbed:
-    payload.haveEmbed !== undefined ? payload.haveEmbed : state.haveEmbed,
-  embedSettings:
-    payload.embedSettings !== undefined
-      ? payload.embedSettings
-      : state.embedSettings,
-  data: payload.data !== undefined ? payload.data : state.data
+  open: true,
+  selected: 'link',
+  loading: true,
+  data: {
+    ...payload
+  }
+});
+
+const setShareSelected = (state, { payload }) => ({
+  ...state,
+  selected: payload,
+  copied: false
+});
+
+const setShareCopied = state => ({
+  ...state,
+  copied: true
+});
+
+const setShareLoading = (state, { payload }) => ({
+  ...state,
+  loading: payload
 });
 
 const setShareUrl = (state, { payload }) => ({
   ...state,
-  url: payload
+  loading: false,
+  data: {
+    ...state.data,
+    shareUrl: payload
+  }
 });
 
-const setShareType = (state, { payload }) => ({
+const setShareOpen = (state, { payload }) => ({
   ...state,
-  selectedType: payload
+  open: payload,
+  copied: false
 });
 
 export default {
-  setShareModal,
+  setShareData,
+  setShareSelected,
+  setShareOpen,
   setShareUrl,
-  setShareType
+  setShareCopied,
+  setShareLoading
 };

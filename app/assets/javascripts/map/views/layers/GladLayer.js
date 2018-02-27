@@ -11,8 +11,8 @@ define([
 ) {
 
   'use strict';
-
-  var TILE_URL = 'http://wri-tiles.s3.amazonaws.com/glad_staging/tiles{/z}{/x}{/y}.png';
+  var env = window.gfw.config.FEATURE_ENV === 'staging' ? 'staging' : 'prod';
+  var TILE_URL = `http://wri-tiles.s3.amazonaws.com/glad_${env}/tiles{/z}{/x}{/y}.png`;
   var START_DATE = '2015-01-01';
 
   var padNumber = function(number) {
@@ -70,22 +70,19 @@ define([
     },
 
     filterCanvasImgdata: function(imgdata, w, h, z) {
+      const imageData = imgdata;
+      const startDate = moment(START_DATE);
+      const endDate = this.currentDate[1];
+      const numberOfDays = endDate.diff(startDate, 'days');
+      const customRangeStartDate = numberOfDays - 7;
+
       if (this.timelineExtent === undefined) {
         this.timelineExtent = [moment.utc(this.currentDate[0]),
           moment.utc(this.currentDate[1])];
       }
 
-      var startYear = this.timelineExtent[0].year(),
-          endYear = this.timelineExtent[1].year();
-      var startDay = this.timelineExtent[0].dayOfYear() + ((startYear - 2015) * 365),
-          endDay = this.timelineExtent[1].dayOfYear() + ((endYear - 2015) * 365);
-
-      var recentRangeStart = this.maxDataDate.clone().subtract(7, 'days'),
-        recentRangeStartYear = recentRangeStart.year();
-      var recentRangeEnd = this.maxDataDate.clone(),
-        recentRangeEndYear = recentRangeEnd.year();
-      var recentRangeStartDay = recentRangeStart.dayOfYear() + ((recentRangeStartYear - 2015) * 365),
-          recentRangeEndDay = recentRangeEnd.dayOfYear() + ((recentRangeEndYear - 2015) * 365);
+      const timeLinesStartDay = this.timelineExtent[0].diff(startDate, 'days');
+      const timeLinesEndDay = numberOfDays - endDate.diff(this.timelineExtent[1], 'days');
 
       var confidenceValue = -1;
       if (this.presenter.status.get('hideUnconfirmed') === true) {
@@ -103,7 +100,7 @@ define([
           // the green band to that
           var day = imgdata[pixelPos] * 255 + imgdata[pixelPos+1];
 
-          if (day >= startDay && day <= endDay) {
+          if (day >= timeLinesStartDay && day <= timeLinesEndDay) {
             var band3_str = padNumber(imgdata[pixelPos+2].toString());
 
             // Grab confidence (the first value) from this string
@@ -118,7 +115,7 @@ define([
               // Set intensity to 255 if it's > than that value
               if (intensity > 255) { intensity = 255; }
 
-              if (day >= recentRangeStartDay && day <= recentRangeEndDay) {
+              if (day >= numberOfDays - 7 && day <= numberOfDays) {
                 imgdata[pixelPos] = 219;
                 imgdata[pixelPos + 1] = 168;
                 imgdata[pixelPos + 2] = 0;

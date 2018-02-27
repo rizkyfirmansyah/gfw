@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Hectare - ha",
+    "value": "ha"
+  },
+  {
+    "label": "Percent Area - %",
+    "value": "%"
+  },
+  {
+    "label": "Net contribution in USD",
+    "value": "net_usd"
+  },
+  {
+    "label": "% of the country's GDP",
+    "value": "net_perc"
+  },
+  {
+    "label": "Biomass carbon",
+    "value": "biomassCarbon"
+  },
+  {
+    "label": "CO2 Emissions",
+    "value": "co2Emissions"
+  }
+]

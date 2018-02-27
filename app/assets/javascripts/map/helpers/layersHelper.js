@@ -69,7 +69,6 @@ define([
   'map/views/layers/MongabayStoriesLayer',
   'map/views/layers/InfoamazoniaStoriesLayer',
   'map/views/layers/GrumpLayer',
-  'map/views/layers/MangroveLayer',
   'map/views/layers/Mangrove2Layer',
   'map/views/layers/MangroveWatchLayer',
   'map/views/layers/WMSLayer',
@@ -98,6 +97,7 @@ define([
   'map/views/layers/RaisgLayer',
   'map/views/layers/PlantationsLayerByType',
   'map/views/layers/PlantationsLayerBySpecies',
+  'map/views/layers/BraMapBiomasLayer',
   'map/views/layers/BraPlantationsLayerByType',
   'map/views/layers/BraPlantationsLayerBySpecies',
   'map/views/layers/PerPlantationsLayerByType',
@@ -162,7 +162,6 @@ define([
   'map/views/layers/MexForestProdLayer',
   'map/views/layers/MexForestRestLayer',
   'map/views/layers/UgaPALayer',
-  'map/views/layers/BraLandCoverLayer',
   'map/views/layers/CanProtectedAreasLayer',
   'map/views/layers/LbrMinExL',
   'map/views/layers/LbrMinDevAg',
@@ -256,7 +255,6 @@ define([
   MongabayStoriesLayer,
   InfoamazoniaStoriesLayer,
   GrumpLayer,
-  MangroveLayer,
   Mangrove2Layer,
   MangroveWatchLayer,
   WMSLayer,
@@ -285,6 +283,7 @@ define([
   RaisgLayer,
   PlantationsLayerByType,
   PlantationsLayerBySpecies,
+  BraMapBiomasLayer,
   BraPlantationsLayerByType,
   BraPlantationsLayerBySpecies,
   PerPlantationsLayerByType,
@@ -349,7 +348,6 @@ define([
   MexForestProdLayer,
   MexForestRestLayer,
   UgaPALayer,
-  BraLandCoverLayer,
   CanProtectedAreasLayer,
   LbrMinExL,
   LbrMinDevAg,
@@ -586,9 +584,6 @@ define([
     grump2000 :{
       view: GrumpLayer
     },
-    mangrove :{
-      view: MangroveLayer
-    },
     mangrove_2 :{
       view: Mangrove2Layer,
       timelineView: MangroveTimeline
@@ -678,6 +673,9 @@ define([
     },
     plantations_by_species: {
       view: PlantationsLayerBySpecies
+    },
+    map_biomas: {
+      view: BraMapBiomasLayer
     },
     bra_plantations_type: {
       view: BraPlantationsLayerByType
@@ -872,9 +870,6 @@ define([
     },
     uga_protected_areas: {
       view:  UgaPALayer
-    },
-    bra_land_cover: {
-      view:  BraLandCoverLayer
     },
     can_protected_areas: {
       view:  CanProtectedAreasLayer
