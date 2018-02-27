@@ -55,9 +55,12 @@ class WidgetHeader extends PureComponent {
 
     return (
       <div className="c-widget-header">
-        <div className="title">{`${title} in ${
-          locationNames.current ? locationNames.current.label : ''
-        }`}</div>
+        <div className="title">
+          <p>{`${title} in `}</p>
+          <p className="title">{`${
+            locationNames.current ? locationNames.current.label : ''
+          }`}</p>
+        </div>
         <div className="options">
           {!embed &&
             haveMapLayers && (
