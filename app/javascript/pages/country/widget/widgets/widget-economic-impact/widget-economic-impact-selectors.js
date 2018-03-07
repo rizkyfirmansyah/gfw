@@ -3,6 +3,7 @@ import findIndex from 'lodash/findIndex';
 import { format } from 'd3-format';
 import { sortByKey } from 'utils/data';
 import { formatUSD } from 'utils/format';
+import { i18n } from 'utils/transifex';
 
 // get list data
 const getData = state => state.data;
@@ -161,7 +162,7 @@ export const getSentence = createSelector(
     const { year } = settings;
     const currentLocation =
       locationNames && locationNames.current && locationNames.current.label;
-    return `According to the FAO, the forestry sector contributed a net <b>${formatUSD(
+    return i18n`According to the FAO, the forestry sector contributed a net <b>${formatUSD(
       selectedFAO[0].net_usd,
       false
     )} USD</b> to the economy in <b>${year}</b>, which is approximately <b>${format(
