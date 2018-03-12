@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import isEmpty from 'lodash/isEmpty';
 import { getColorPalette } from 'utils/data';
 import { format } from 'd3-format';
+import { i18n } from 'utils/transifex';
 
 // get list data
 const getData = state => state.data;
@@ -60,12 +61,18 @@ export const getSentence = createSelector(
         ? `<b>${indicator.label}</b> in <b>${locationLabel}</b> `
         : `<b>${locationLabel}</b> `
     }`;
+    const params = {
+      year: settings.extentYear,
+      value: format('.3s')(cover),
+      location: locationIntro
+    };
+    const sentenceTemplate = i18n('As of {year}, {location} has {value} of tree cover.', params);
     const sentence = `As of <b>${
       settings.extentYear
     }</b>, ${locationIntro} had <b>${format('.3s')(
       cover
     )}Ha</b> of tree cover.`;
-
-    return sentence;
+    console.log(sentenceTemplate);
+    return sentenceTemplate;
   }
 );
